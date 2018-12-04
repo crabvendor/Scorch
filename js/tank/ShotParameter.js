@@ -1,4 +1,4 @@
-class ShotParameter {
+export class ShotParameter {
 
     constructor(angle, power) {
         this.angle = angle;

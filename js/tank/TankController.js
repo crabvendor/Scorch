@@ -1,5 +1,6 @@
-import { Bullet } from "../bullet/Bullet";
-import { BulletController } from "../bullet/BulletController";
+import {Bullet} from "../bullet/Bullet.js";
+import {BulletView} from "../bullet/BulletView.js";
+import {BulletController} from "../bullet/BulletController.js";
 
 export class TankController {
     constructor(tank) {
@@ -9,7 +10,8 @@ export class TankController {
     shoot(e) {
         let bullet = new Bullet(this.tank);
         let bulletController = new BulletController(bullet);
-        let bulletView = new bulletView(bulletController);
+        let bulletView = new BulletView(bulletController);
+        document.getElementById(`${this.tank.getName()}`).appendChild(bulletView.element);
         bulletController.moveBullet();
     }
 }

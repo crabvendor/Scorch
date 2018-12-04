@@ -2,13 +2,14 @@ export class TankView {
     constructor(tankController) {
         this.tankController = tankController;
         this.tankElement = this.createTankElement();
+        this.registerEventListeners();
     }
 
     render() {
         let name = this.tankController.tank.getName();
-        let positionLeft = this.tankController.tank.getPosition().getX();
+        let positionLeft = this.tankController.tank.getPos().getX();
         return `
-        <div class="tank" id="${name}" style="left: ${positionLeft}px; top="calc(100% - 40px)"></div>
+        <div class="tank" id="${name}" style="left: ${positionLeft}px; top: calc(100% - 40px)"></div>
         `
     }
 

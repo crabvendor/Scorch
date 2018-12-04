@@ -1,25 +1,19 @@
 export class BulletController{
-    constructor(bullet){
-        this.bullet = bullet;      
+    constructor(bulletObject){
+        this.bullet = bulletObject;      
     }
 
     moveBullet() {
-        let x = this.bullet.offsetLeft;
+        let bulletElem = document.getElementsByClassName("bullet")[0];
+        let x = bulletElem.offsetLeft;
         let interval = setInterval((x) => {
-            x = this.bullet.offsetLeft;
-            this.bullet.style.display = "block";
-            this.bullet.style.left = x + 10 + "px";
+            x = bulletElem.offsetLeft;
+            bulletElem.style.display = "block";
+            bulletElem.style.left = x + 10 + "px";
             if (x > 1000) {
                 clearInterval(interval);
-                hideBullet();
+                bulletElem.parentElement.removeChild(bulletElem);
             }
         }, 20);
     }
-    
-
-
-    hideBullet() {
-        this.bullet.style.display = "none";
-    }
-
-    }
+}

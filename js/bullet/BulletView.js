@@ -1,3 +1,5 @@
+import {BulletController} from "./BulletController.js";
+
 export class BulletView{
 
     constructor(bulletController){
@@ -6,8 +8,8 @@ export class BulletView{
     }
 
     render() {
-        let positionLeft = bulletController.getPos().getX();
-        let positionTop = bulletController.getPos().getY();
+        let positionLeft = this.controller.bullet.getPos().getX();
+        let positionTop = this.controller.bullet.getPos().getY();
         return `<div class="bullet" style="left: ${positionLeft}px; top: ${positionTop}px;">
                 </div>`;
     }
