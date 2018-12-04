@@ -27,6 +27,5 @@ body {
     display: none;
     width: 10px;
     height: 10px;
-    left: 100%;
     transform: rotate(45deg);
 }
