@@ -25,7 +25,6 @@ body {
 .bullet {
     position: relative;
     background-color: blueviolet;
-    display: none;
     width: 10px;
     height: 10px;
     transform: rotate(45deg);

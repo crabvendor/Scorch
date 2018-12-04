@@ -8,6 +8,10 @@ export class Tank {
         return this.position;
     }
 
+    setPos(position){
+        this.position = position;
+    }
+
     getName() {
         return this.name;
     }

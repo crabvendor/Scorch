@@ -21,5 +21,4 @@ export class Position {
         this.y = y;
     }
 
-
 }

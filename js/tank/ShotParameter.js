@@ -20,7 +20,4 @@ export class ShotParameter {
     setPower(power) {
         this.power = power;
     }
-
-
-
 }
