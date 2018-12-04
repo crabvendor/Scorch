@@ -3,7 +3,7 @@ export class Bullet{
     this.tank = tank;
     this.pos = tank.getPos();
     this.angle = shotParameters.getAngle();
-    this.power = shotParameters.getShotPower();
+    this.power = shotParameters.getPower();
  }
     getPos(){
         return this.pos;
@@ -13,11 +13,11 @@ export class Bullet{
         this.pos = position;
     }
 
-    getShotAngle(){
+    getAngle(){
         return this.angle;
     }
 
-    getShotPower(){
+    getPower(){
         return this.power;
     }
 }
