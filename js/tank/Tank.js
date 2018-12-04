@@ -11,4 +11,4 @@ export class Tank {
     getName() {
         return this.name;
     }
-}
+}   
