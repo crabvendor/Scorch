@@ -1,5 +1,3 @@
-import {tank} from "../tank/tank.js"
-
 export class Bullet{
  constructor(tank){
     this.tank = tank;

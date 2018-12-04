@@ -3,7 +3,7 @@ export class BulletController{
         this.bullet = bullet;      
     }
 
-    moveBullet(event) {
+    moveBullet() {
         let x = this.bullet.offsetLeft;
         let interval = setInterval((x) => {
             x = this.bullet.offsetLeft;
