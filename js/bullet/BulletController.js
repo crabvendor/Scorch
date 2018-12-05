@@ -1,4 +1,4 @@
-import {gravityAcceleration} from "../game.js"
+import {gravityAcceleration} from "../Constants.js"
 
 export class BulletController{
     constructor(bulletObject){

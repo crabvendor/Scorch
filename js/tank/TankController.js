@@ -2,7 +2,7 @@ import {Bullet} from "../bullet/Bullet.js";
 import {BulletView} from "../bullet/BulletView.js";
 import {BulletController} from "../bullet/BulletController.js";
 import { ShotParameter } from "./ShotParameter.js";
-import {KeyCodes} from "../game.js";
+import {KeyCodes} from "../Constants.js";
 
 export class TankController {
     constructor(tank) {
@@ -25,12 +25,12 @@ export class TankController {
         console.log(this.shotParams.getAngle() + "   " + this.shotParams.getPower());
     } 
 
-    shoot(e) {
+    createBullet(e) {
         let bullet = new Bullet(this.tank, this.shotParams);
         let bulletController = new BulletController(bullet);
         let bulletView = new BulletView(bulletController);
         document.getElementById(`${this.tank.getName()}`).appendChild(bulletView.element);
-        bulletController.moveBullet();
+        return bulletView;
     }
 
     getShotParameters() {
