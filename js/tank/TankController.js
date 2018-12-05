@@ -28,5 +28,9 @@ export class TankController {
         document.getElementById(`${this.tank.getName()}`).appendChild(bulletView.element);
         bulletController.moveBullet();
     }
+
+    getShotParameters() {
+        return new ShotParameter(1, 2);
+    }
 }
     
