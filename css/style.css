@@ -7,27 +7,29 @@ body {
 }
 
 #battlefield {
-    width: 1000px;
-    height: 500px;
     background-color: white;
     align-self: center;
     margin-top: 100px;
+
+    width: 1000px;
+    height: 500px;
 }
 
 .tank {
     display: inline-block;
-    background-color: black;
+    background-color:rgba(255, 0, 0, 0.1);
+    position: relative;
+
     width: 80px;
     height: 40px;
-    position: relative;
 }
 
 .bullet {
     position: relative;
     background-color: blueviolet;
+    
     width: 10px;
     height: 10px;
-    transform: rotate(45deg);
 }
 
 #top-bar {
@@ -38,6 +40,7 @@ body {
 .shot-parameters {
     display: flex;
     justify-content: center;
+    align-content: space-around;
 }
 
 .tank-name {

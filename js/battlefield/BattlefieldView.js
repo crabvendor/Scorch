@@ -1,10 +1,9 @@
-export class BattlefieldView {
+    export class BattlefieldView {
     constructor(battlefieldController) {
         this.battlefieldController = battlefieldController;
-        console.log(this.battlefieldController.getCurrentTank());
-
-        this.battlefieldElement = this.getBattlefieldElement();
-        this.battlefieldInterfaceElement = this.getBattlefieldInterfaceElement();
+        this.updateInterfaceElements();
+        this.addEventListeners();
+        this.getTankLog();
     }
 
     renderBattlefield() {
@@ -27,11 +26,15 @@ export class BattlefieldView {
                 <h3>Angle: ${currentTankAngle}</h3>
                 <h3>Power: ${currentTankPower}</h3>
             </div>
-            <div class="tank-name">
+            <div class="tank-name"> 
                 <h3>Name: ${currentTankName}</h3>
             </div>
         </div>
         `
+    }
+
+    getTankLog() {
+        console.log(this.battlefieldController.getCurrentTank());
     }
 
     getBattlefieldElement() {
@@ -44,5 +47,18 @@ export class BattlefieldView {
         let element = document.createElement("template");
         element.innerHTML = this.renderInterface().trim();
         return element.content.firstChild;
+    }
+
+    updateInterfaceElements() {
+        console.log("interface updated!")
+        this.battlefieldElement = this.getBattlefieldElement();
+        this.battlefieldInterfaceElement = this.getBattlefieldInterfaceElement();
+    }
+
+    addEventListeners() {
+        document.addEventListener("click", this.battlefieldController.nextTurn.bind(this.battlefieldController));
+        document.addEventListener("click", this.updateInterfaceElements.bind(this));
+
+        document.addEventListener("click", this.getTankLog.bind(this));
     }
 }
