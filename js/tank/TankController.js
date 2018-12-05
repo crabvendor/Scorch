@@ -34,7 +34,7 @@ export class TankController {
     }
 
     getShotParameters() {
-        return new ShotParameter(1, 2);
+        return this.shotParams;
     }
 }
     
