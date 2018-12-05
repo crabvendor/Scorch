@@ -1,33 +1,37 @@
 import {gravityAcceleration} from "../Constants.js"
+import { Position } from "../position/Position.js";
 
 export class BulletController{
     constructor(bulletObject){
         this.bullet = bulletObject;      
     }
 
-    moveBullet() {
+    async moveBullet() {
         let bulletElem = document.getElementsByClassName("bullet")[0];
         let angle = this.bullet.getAngle();
         let power = this.bullet.getPower();
         let trajectory = this.calulateTrajectory(power, angle, this.bullet.getPos());
-        let x = bulletElem.offsetLeft;
-        bulletElem.style.display = "block";
-        let counter = 0;
-        let interval = setInterval(() => {
-            bulletElem.style.left = trajectory[counter][0] + "px";
-            bulletElem.style.top = -trajectory[counter][1] + "px";
-            counter ++;
-            if (counter == trajectory.length) {
-                clearInterval(interval);
+        console.log(this.bullet.getPos());
+        
+        for (let i = 0; i <= trajectory.length - 1; i++ ){
+            let xPos = trajectory[i][0];
+            let yPos = trajectory[i][1];
+            bulletElem.style.left = xPos + "px";
+            bulletElem.style.top = -yPos + "px";
+            this.bullet.getPos().setX(xPos);
+            this.bullet.getPos().setY(yPos);
+            if (i == trajectory.length - 1 ) {
                 bulletElem.parentElement.removeChild(bulletElem);
+                delete this.bullet.getPos();
             }
-        }, 20);
-    }
+            await this.sleep(20);
+        }
+
+        }
+    
 
     calulateTrajectory(power, angle, startPoint){
         let angleRad = angle * Math.PI/180
-        
-        
         let ySpeed = Math.sin(angleRad) * power;
         let xSpeed = Math.cos(angleRad) * power;
         let xStart = startPoint.getX();
@@ -44,5 +48,13 @@ export class BulletController{
 
 
         return trajTable;
+    }
+
+    getBullet(){
+        return this.bullet;
+    }
+
+    sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
     }
 }
