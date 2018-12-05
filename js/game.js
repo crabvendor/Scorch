@@ -41,11 +41,8 @@ for (let i = 0; i <= tankViewList.length; i++ ){
 document.getElementById("battlefield-interface").appendChild(battlefieldView.battlefieldInterfaceElement);
 
 function renderInterface(e) {
-    let keyCode = e.keyCode;
-    if (keyCode == KeyCodes.ENTER) {
-        document.getElementById("top-bar").remove();
-        document.getElementById("battlefield-interface").appendChild(battlefieldView.battlefieldInterfaceElement);
-    }
+    document.getElementById("top-bar").remove();
+    document.getElementById("battlefield-interface").appendChild(battlefieldView.battlefieldInterfaceElement);
 }
 
 function addTank(xPos, Ypos, name){
