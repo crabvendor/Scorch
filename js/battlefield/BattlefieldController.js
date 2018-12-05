@@ -1,11 +1,13 @@
 import {KeyCodes} from "../Constants.js";
+import { Position } from "../position/Position.js";
 
 export class BattlefieldController {
-
+    
     constructor(battlefield) {
         this.battlefield = battlefield;
         this.currentTankId = 0;
         this.currentTank = this.battlefield.getTanks()[this.currentTankId].getController();
+        this.bulletView;
     }
 
     getCurrentTank() {
@@ -25,16 +27,30 @@ export class BattlefieldController {
     shoot(e) {
         if(e.keyCode == KeyCodes.ENTER) {
             const getBullet = new Promise((resolve, reject) => {
-                this.bullet = this.currentTank.createBullet();
-                if (this.bullet){
-                resolve((this.bullet.getController().moveBullet()
+                this.bulletView = this.currentTank.createBullet();
+                if (this.bulletView){
+                resolve((this.moveAndTrackBullet()
                 ));
                 } else{
                 reject(alert("dupa"))
                 }
             });
-            
+            getBullet.then(
+                result => this.currentTank.getTank().setPos(this.currentTank.getTank())
+            );
         }
+        
+    }
+
+    moveAndTrackBullet(){
+        this.bulletView.getController().moveBullet();
+        let counter = 0;
+        do{ 
+            console.log(this.currentTank.getTank().getPos());
+            counter++;
+        }while(counter < 100)
+        
+        
     }
 
     isCollide(a, b) {
