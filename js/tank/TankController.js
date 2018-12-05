@@ -11,14 +11,18 @@ export class TankController {
     }
 
     changeShotParams(e){
-        if (event.keyCode == KeyCodes.right){
-            this.shotParams.incrementPower();
-        }
-        if (event.keyCode == KeyCodes.UP){
+        let keyCode = e.keyCode;
+        if(keyCode == KeyCodes.UP) {
             this.shotParams.incrementAngle();
+        } else if (keyCode == KeyCodes.DOWN){
+            this.shotParams.decrementAngle();
+        } else if (keyCode == KeyCodes.RIGHT){
+            this.shotParams.incrementPower();
+        } else if (keyCode == KeyCodes.LEFT){
+            this.shotParams.decrementPower()
         }
 
-        console.log(this.shotParams.getAngle() + "   " + this.shotParams.getPower);
+        console.log(this.shotParams.getAngle() + "   " + this.shotParams.getPower());
     } 
 
     shoot(e) {
