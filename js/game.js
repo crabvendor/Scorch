@@ -42,8 +42,5 @@ function renderInterface() {
     document.getElementById("battlefield-interface").appendChild(battlefieldView.battlefieldInterfaceElement);
 }
 
-//TODO:Fix memory leak:
-setInterval(renderInterface, 20);
-
-// document.addEventListener("keydown", renderInterface);
-// document.addEventListener("click", renderInterface);
+document.addEventListener("keydown", renderInterface);
+document.addEventListener("click", renderInterface);
