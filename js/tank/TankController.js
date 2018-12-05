@@ -21,8 +21,6 @@ export class TankController {
         } else if (keyCode == KeyCodes.LEFT){
             this.shotParams.decrementPower()
         }
-
-        console.log(this.shotParams.getAngle() + "   " + this.shotParams.getPower());
     } 
 
     createBullet(e) {
@@ -35,6 +33,10 @@ export class TankController {
 
     getShotParameters() {
         return this.shotParams;
+    }
+
+    getTank(){
+        return this.tank;
     }
 }
     
