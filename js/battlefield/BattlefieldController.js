@@ -1,4 +1,4 @@
-import {KeyCodes} from "../game.js";
+import {KeyCodes} from "../Constants.js";
 
 export class BattlefieldController {
 
@@ -19,15 +19,31 @@ export class BattlefieldController {
                 this.currentTankId = 0;
             }
             this.currentTank = this.battlefield.getTanks()[this.currentTankId].getController();
-            console.log(this.currentTankId);
         }
     }
 
     shoot(e) {
         if(e.keyCode == KeyCodes.ENTER) {
-            this.currentTank.shoot();
+            const getBullet = new Promise((resolve, reject) => {
+                this.bullet = this.currentTank.createBullet();
+                if (this.bullet){
+                resolve((this.bullet.getController().moveBullet()
+                ));
+                } else{
+                reject(alert("dupa"))
+                }
+            });
+            
         }
-        this.currentTank = this.battlefield.getTanks()[this.currentTankId].getController();
-        console.log(this.currentTankId);
+    }
+
+    isCollide(a, b) {
+        return !(
+            ((a.y + a.height) < (b.y)) ||
+            (a.y > (b.y + b.height)) ||
+            ((a.x + a.width) < b.x) ||
+            (a.x > (b.x + b.width))
+        );
     }
 }
+
