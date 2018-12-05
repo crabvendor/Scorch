@@ -9,7 +9,8 @@ export class TankController {
     }
 
     shoot(e) {
-        let bullet = new Bullet(this.tank);
+        let shotParams = new ShotParameter(45, 50);
+        let bullet = new Bullet(this.tank, shotParams);
         let bulletController = new BulletController(bullet);
         let bulletView = new BulletView(bulletController);
         document.getElementById(`${this.tank.getName()}`).appendChild(bulletView.element);
