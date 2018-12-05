@@ -2,7 +2,7 @@ import {Bullet} from "../bullet/Bullet.js";
 import {BulletView} from "../bullet/BulletView.js";
 import {BulletController} from "../bullet/BulletController.js";
 import { ShotParameter } from "./ShotParameter.js";
-import { KeyCodes} from "../game.js";
+import {KeyCodes} from "../game.js";
 
 export class TankController {
     constructor(tank) {

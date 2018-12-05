@@ -15,7 +15,8 @@ export const KeyCodes = {
     LEFT:   37,
     UP:     38,
     RIGHT:  39,
-    DOWN:   40
+    DOWN:   40,
+    ENTER: 13,
   };
 
 let tankViewList = new Array()
@@ -25,24 +26,26 @@ addTank(0, 0, "bob")
 
 addTank(180, 0, "franek");
 
-console.log(tankViewList);
 
 let battlefieldView = createBattlefield();
+
 
 document.body.appendChild(battlefieldView.battlefieldElement);
 
 for (let i = 0; i <= tankViewList.length; i++ ){
+    console.log(tankViewList[i].tankElement);
+    
     document.getElementById("battlefield").appendChild(tankViewList[i].tankElement);
 }
 
-document.addEventListener("keydown", renderInterface);
-document.addEventListener("click", renderInterface);
-
 document.getElementById("battlefield-interface").appendChild(battlefieldView.battlefieldInterfaceElement);
 
-function renderInterface() {
-    document.getElementById("top-bar").remove();
-    document.getElementById("battlefield-interface").appendChild(battlefieldView.battlefieldInterfaceElement);
+function renderInterface(e) {
+    let keyCode = e.keyCode;
+    if (keyCode == KeyCodes.ENTER) {
+        document.getElementById("top-bar").remove();
+        document.getElementById("battlefield-interface").appendChild(battlefieldView.battlefieldInterfaceElement);
+    }
 }
 
 function addTank(xPos, Ypos, name){
@@ -61,3 +64,4 @@ function createBattlefield(){
 }
 
 
+document.addEventListener("keydown", renderInterface);

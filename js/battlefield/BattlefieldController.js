@@ -1,3 +1,5 @@
+import {KeyCodes} from "../game.js";
+
 export class BattlefieldController {
 
     constructor(battlefield) {
@@ -10,10 +12,20 @@ export class BattlefieldController {
         return this.currentTank;
     }
 
-    nextTurn() {
-        this.currentTankId++;
-        if (this.currentTankId >= this.battlefield.getTanks().length) {
-            this.currentTankId = 0;
+    nextTurn(e) {
+        if (e.keyCode == KeyCodes.ENTER) {
+            this.currentTankId++;
+            if (this.currentTankId >= this.battlefield.getTanks().length) {
+                this.currentTankId = 0;
+            }
+            this.currentTank = this.battlefield.getTanks()[this.currentTankId].getController();
+            console.log(this.currentTankId);
+        }
+    }
+
+    shoot(e) {
+        if(e.keyCode == KeyCodes.ENTER) {
+            this.currentTank.shoot();
         }
         this.currentTank = this.battlefield.getTanks()[this.currentTankId].getController();
         console.log(this.currentTankId);
