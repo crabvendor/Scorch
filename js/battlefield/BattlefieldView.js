@@ -58,7 +58,7 @@
     addEventListeners() {
         document.addEventListener("click", this.battlefieldController.nextTurn.bind(this.battlefieldController));
         document.addEventListener("click", this.updateInterfaceElements.bind(this));
-
+        document.addEventListener("keydown", this.updateInterfaceElements.bind(this));
         document.addEventListener("click", this.getTankLog.bind(this));
     }
 }

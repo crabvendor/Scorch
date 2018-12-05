@@ -21,7 +21,7 @@ export class TankView {
 
     registerEventListeners() {
         this.tankElement.addEventListener("click", this.tankController.shoot.bind(this.tankController));
-        document.addEventListener("keydown", this.tankController.changeShotParams.bind(this.tankController), false);
+        document.addEventListener("keydown", this.tankController.changeShotParams.bind(this.tankController));
     }
 
 }
