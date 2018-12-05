@@ -16,4 +16,9 @@ export const TankParams = {
 export const BattlefieldParams = {
     HEIGHT: 1000,
     WITDH: 500,
-}
+};
+
+export const BulletParams = {
+    WITDH: 10,
+    HEIGHT: 10,
+};

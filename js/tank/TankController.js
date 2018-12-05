@@ -24,6 +24,7 @@ export class TankController {
     } 
 
     createBullet(e) {
+        
         let bullet = new Bullet(this.tank, this.shotParams);
         let bulletController = new BulletController(bullet);
         let bulletView = new BulletView(bulletController);

@@ -9,7 +9,7 @@ export class TankView {
         let name = this.tankController.tank.getName();
         let positionLeft = this.tankController.tank.getPos().getX();
         return `
-        <div class="tank" id="${name}" style="left: ${positionLeft}px; top: calc(100% - 40px)"></div>
+        <div class="tank" id="${name}" style="left: ${positionLeft}px; top: 460px"></div>
         `
     }
 

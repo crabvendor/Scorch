@@ -1,4 +1,4 @@
-import {KeyCodes} from "../Constants.js";
+import {KeyCodes, BulletParams, TankParams} from "../Constants.js";
 import { Position } from "../position/Position.js";
 
 export class BattlefieldController {
@@ -8,6 +8,7 @@ export class BattlefieldController {
         this.currentTankId = 0;
         this.currentTank = this.battlefield.getTanks()[this.currentTankId].getController();
         this.bulletView;
+        this.tankViewList = this.battlefield.getTanks();
     }
 
     getCurrentTank() {
@@ -32,34 +33,58 @@ export class BattlefieldController {
                 resolve((this.moveAndTrackBullet()
                 ));
                 } else{
-                reject(alert("dupa"))
+                reject(alert("Something went awry"))
                 }
             });
             getBullet.then(
-                result => this.currentTank.getTank().setPos(this.currentTank.getTank())
+                result => this.currentTank.getTank().setPos(new Position(this.currentTank.getTank().getxStart(), this.currentTank.getTank().getyStart()))
             );
         }
-        
+
     }
 
-    moveAndTrackBullet(){
-        this.bulletView.getController().moveBullet();
-        let counter = 0;
+    async moveAndTrackBullet(){
+        let hitSomething = this.bulletView.getController().moveBullet();
+        let hitTank = false;
         do{ 
-            console.log(this.currentTank.getTank().getPos());
-            counter++;
-        }while(counter < 100)
+            
+            let currentPos = this.bulletView.getController().getBullet().getPos();
+            hitSomething.then(
+                result => hitSomething = result
+            );
+            console.log(currentPos.getY())
+            for (let i = 0; i<= this.tankViewList.length - 1; i++){
+                let tank = this.tankViewList[i].getController().getTank();
+                let tankElem = document.getElementById(tank.getName());
+                let tankPos = tank.getPos();
+                hitTank = this.isCollide(currentPos, tankPos);
+
+                if (hitTank){
+                    console.log(currentPos.getX() + " " + currentPos.getY());
+                    console.log(tankPos.getX() + " " + tankPos.getY());  
+                    console.log(tank.getName())    
+                }
+            }
+            
+            
+            await this.sleep(20);
+        }while(hitSomething)
         
         
     }
 
-    isCollide(a, b) {
+    isCollide(bulletPos, tankPos) {
         return !(
-            ((a.y + a.height) < (b.y)) ||
-            (a.y > (b.y + b.height)) ||
-            ((a.x + a.width) < b.x) ||
-            (a.x > (b.x + b.width))
+            ((bulletPos.getY() + BulletParams.HEIGHT) < (tankPos.getY())) ||
+            (bulletPos.getY() > (tankPos.getY() + TankParams.HEIGHT)) ||
+            ((bulletPos.getX() + BulletParams.WITDH) < tankPos.getX()) ||
+            (bulletPos.getX() > (tankPos.getX() + TankParams.WITDH))
         );
+    }
+
+
+    sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
     }
 }
 
