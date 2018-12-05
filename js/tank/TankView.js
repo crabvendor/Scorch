@@ -21,5 +21,6 @@ export class TankView {
 
     registerEventListeners() {
         this.tankElement.addEventListener("click", this.tankController.shoot.bind(this.tankController));
+        document.addEventListener("onkeypress", this.tankController.changeShotParams.bind(this.tankController));
     }
 }
