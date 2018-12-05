@@ -18,23 +18,26 @@ export const KeyCodes = {
     DOWN:   40
   };
 
-let tankPosition = new Position(0,0);
-let tank = new Tank("franek", tankPosition);
-let franekControler = new TankController(tank);
-let franekView = new TankView(franekControler);
+let tankViewList = new Array()
 
-let tank2Position = new Position(180,0);
-let tank2 = new Tank("bob", tank2Position);
-let tank2Controler = new TankController(tank2);
-let tank2View = new TankView(tank2Controler);
 
-let newBattlefield = new Battlefield([franekControler, tank2Controler]);
-let battlefieldController = new BattlefieldController(newBattlefield);
-let battlefieldView = new BattlefieldView(battlefieldController);
+addTank(0, 0, "bob")
+
+addTank(180, 0, "franek");
+
+console.log(tankViewList);
+
+let battlefieldView = createBattlefield();
 
 document.body.appendChild(battlefieldView.battlefieldElement);
-document.getElementById("battlefield").appendChild(franekView.tankElement);
-document.getElementById("battlefield").appendChild(tank2View.tankElement);
+
+for (let i = 0; i <= tankViewList.length; i++ ){
+    document.getElementById("battlefield").appendChild(tankViewList[i].tankElement);
+}
+
+document.addEventListener("keydown", renderInterface);
+document.addEventListener("click", renderInterface);
+
 document.getElementById("battlefield-interface").appendChild(battlefieldView.battlefieldInterfaceElement);
 
 function renderInterface() {
@@ -42,8 +45,19 @@ function renderInterface() {
     document.getElementById("battlefield-interface").appendChild(battlefieldView.battlefieldInterfaceElement);
 }
 
-//TODO:Fix memory leak:
-setInterval(renderInterface, 20);
+function addTank(xPos, Ypos, name){
+    let tankPosition = new Position(xPos, Ypos);
+    let tank = new Tank(name, tankPosition);
+    let tankController = new TankController(tank);
+    let tankView = new TankView(tankController)
+    tankViewList.push(tankView);
+}
 
-// document.addEventListener("keydown", renderInterface);
-// document.addEventListener("click", renderInterface);
+function createBattlefield(){
+    let newBattlefield = new Battlefield(tankViewList);
+    let battlefieldController = new BattlefieldController(newBattlefield);
+    let battlefieldView = new BattlefieldView(battlefieldController);
+    return battlefieldView;
+}
+
+

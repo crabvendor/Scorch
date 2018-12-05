@@ -24,4 +24,8 @@ export class TankView {
         document.addEventListener("keydown", this.tankController.changeShotParams.bind(this.tankController));
     }
 
+    getController(){
+        return this.tankController;
+    }
+
 }

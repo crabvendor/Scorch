@@ -61,4 +61,5 @@
         document.addEventListener("keydown", this.updateInterfaceElements.bind(this));
         document.addEventListener("click", this.getTankLog.bind(this));
     }
+    
 }

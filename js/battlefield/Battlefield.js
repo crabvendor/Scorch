@@ -1,10 +1,10 @@
 export class Battlefield {
     
-    constructor(tankControllers) {
-        this.tankControllers = tankControllers;
+    constructor(tankViewList) {
+        this.tankViewList = tankViewList;
     }
 
     getTanks() {
-        return this.tankControllers;
+        return this.tankViewList;
     }
 }
