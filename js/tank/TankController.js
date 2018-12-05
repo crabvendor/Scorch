@@ -1,7 +1,7 @@
 import {Bullet} from "../bullet/Bullet.js";
 import {BulletView} from "../bullet/BulletView.js";
 import {BulletController} from "../bullet/BulletController.js";
-import { ShotParameter } from "./ShotParameter.js";
+import {ShotParameter} from "./ShotParameter.js"
 
 export class TankController {
     constructor(tank) {
@@ -15,6 +15,10 @@ export class TankController {
         let bulletView = new BulletView(bulletController);
         document.getElementById(`${this.tank.getName()}`).appendChild(bulletView.element);
         bulletController.moveBullet();
+    }
+
+    getShotParameters() {
+        return new ShotParameter(1, 2);
     }
 }
     
