@@ -15,7 +15,8 @@ export const KeyCodes = {
     LEFT:   37,
     UP:     38,
     RIGHT:  39,
-    DOWN:   40
+    DOWN:   40,
+    ENTER: 13,
   };
 
 let tankPosition = new Position(0,0);
@@ -37,10 +38,12 @@ document.getElementById("battlefield").appendChild(franekView.tankElement);
 document.getElementById("battlefield").appendChild(tank2View.tankElement);
 document.getElementById("battlefield-interface").appendChild(battlefieldView.battlefieldInterfaceElement);
 
-function renderInterface() {
-    document.getElementById("top-bar").remove();
-    document.getElementById("battlefield-interface").appendChild(battlefieldView.battlefieldInterfaceElement);
+function renderInterface(e) {
+    let keyCode = e.keyCode;
+    if (keyCode == KeyCodes.ENTER) {
+        document.getElementById("top-bar").remove();
+        document.getElementById("battlefield-interface").appendChild(battlefieldView.battlefieldInterfaceElement);
+    }
 }
 
 document.addEventListener("keydown", renderInterface);
-document.addEventListener("click", renderInterface);
