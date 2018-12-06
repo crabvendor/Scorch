@@ -63,9 +63,14 @@ function printBfield(tankViewList, battlefieldView){
 }
 
 function createTank(xPos, groundCords, name){
-    let yPos = groundCords[xPos][1] - 1.5 * TankParams.HEIGHT;
-    if(yPos > 500 || !yPos){
-        yPos = 500;
+    let yPos;
+    try{
+        yPos = groundCords[xPos][1] - 1.5 * TankParams.HEIGHT;
+    }catch(error){
+        yPos = 0;
+    }
+    if(yPos > 500 - TankParams.HEIGHT || yPos == 0){
+        yPos = 500 - TankParams.HEIGHT;
     }
     let tankPosition = new Position(xPos, yPos);
     let tank = new Tank(name, tankPosition);
