@@ -11,7 +11,7 @@ export class BattlefieldController {
         this.tankViewList = this.battlefield.getTanks();
         this.buttonNotPressed = true;
         this.groundCords = groundCords;
-
+        this.currentTank.battlefield = this;
     }
 
     getCurrentTank() {
@@ -69,8 +69,7 @@ export class BattlefieldController {
                 if (hitTank){
                     hitSomething = !hitTank;
                     tankElem.parentNode.removeChild(tankElem);
-                    let bulletElem = document.getElementsByClassName("bullet")[0];
-                    bulletElem.parentNode.removeChild(bulletElem);
+                    
                     this.tankViewList.splice(i, 1)         
                     break;    
                 }
@@ -84,12 +83,11 @@ export class BattlefieldController {
             
             if(hitGround){
                 hitSomething = !hitGround;
-                let bulletElem = document.getElementsByClassName("bullet")[0];
-                bulletElem.parentNode.removeChild(bulletElem);
             }
           await this.sleep(20);
         }while(hitSomething)
-        
+        let bulletElem = document.getElementsByClassName("bullet")[0];
+        bulletElem.parentNode.removeChild(bulletElem);
         
     }
 

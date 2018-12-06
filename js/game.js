@@ -12,10 +12,14 @@ import { TankParams } from "./Constants.js";
 
 let battlefieldView;
 let groundCords;
+let map1 = "(-0.001)*x^2+500";
+let map2 = "0.0002*x^2+200";
+let map3 = "0.00001*x^5+(-0.0000001)*x^4+(-0.01)*x^3+0.00001*(x-10)^2+100";
+
 
 
 const prepareBattlefield = new Promise((resolve, reject) => {
-    let ground = new Ground("(-0.001)*x^2+500");
+    let ground = new Ground("(x-10)*(x+8)^2+400");
     groundCords = ground.getCordsArray();
     let tankViewList = new Array();
     tankViewList.push(createTank(300, groundCords, "bob"))

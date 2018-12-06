@@ -27,4 +27,11 @@ export class TankView {
         return this.tankController;
     }
 
+    // renderTank() {
+    //     this.tankElement = this.createTankElement();
+    // }
+
+    // addEventListeners() {
+    //     document.addEventListener("keydown", this.renderTank.bind(this));
+    // }
 }
