@@ -15,7 +15,7 @@ let battlefieldView;
 
 
 const prepareBattlefield = new Promise((resolve, reject) => {
-    let ground = new Ground("(-0.5)*x+500");
+    let ground = new Ground("(-1)*x+500");
     let groundCords = ground.getCordsArray();
     let tankViewList = new Array();
     tankViewList.push(createTank(300, groundCords, "bob"))
@@ -64,7 +64,7 @@ function printBfield(tankViewList, battlefieldView){
 
 function createTank(xPos, groundCords, name){
     let yPos = groundCords[xPos][1] - 1.5 * TankParams.HEIGHT;
-    if(yPos > 500 || !ypos){
+    if(yPos > 500 || !yPos){
         yPos = 500;
     }
     let tankPosition = new Position(xPos, yPos);
