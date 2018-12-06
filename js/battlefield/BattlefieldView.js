@@ -22,7 +22,7 @@ export class BattlefieldView {
         let positionLeft = singlePosition.getX();
         let positionTop = singlePosition.getY();
         return `
-        <div class="mountain" style="left: ${positionLeft}px; top: ${positionTop}px"></div>
+        <div class="mountain" style="left: ${positionLeft}px; top: ${positionTop}px; height:${500 - positionTop}px"></div>
         `
     }
 
@@ -45,8 +45,9 @@ export class BattlefieldView {
         `
     }
 
+
     getGroundElement(position){
-        let element =document.createElement("template");
+        let element = document.createElement("template");
         element.innerHTML = this.renderGround(position).trim();
         return element.content.firstChild;
     }
