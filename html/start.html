@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,16 +9,37 @@
     <link rel="stylesheet" type="text/css" href="../css/startStyle.css">
 
 </head>
-    <body>
-        <div class="login-screen">
+
+<body>
+    <div class="login-screen">
+
+        <form class="login-form">
+            <h1>scorch
+                <br>game</h1>
+            <input type="text" name="team name" placeholder="Team name">
+            <br>
+            <br>
+            <input type="number" name= "number" placeholder="Number of players">
+            <br>
+            <br>
+            <p>Tank color:</p>
+        
+        
+            <input type="radio" name="color" value="tank1" checked> Red
             
-            <form class="login-form">
-                <h1>scorch<br>game</h1>
-                <input type="text" placeholder="Team name"><br><br> 
-                <input type="password" placeholder="Number of players"><br><br>
-                <input type="submit" value="Play"><br><br>
-                <a href="#"><b>How to play</b></a>
-            </form>
-        </div>
-    </body>
+            <input type="radio" name="color" value="tank2"> White
+            
+            <input type="radio" name="color" value="tank3"> Black
+            <br>
+            <br>
+            <input type="submit" value="Play">
+            <br>
+            <br>
+            <a href="#">
+                <b>How to play</b>
+            </a>
+        </form>
+    </div>
+</body>
+
 </html>

@@ -14,7 +14,23 @@ body {
     margin-top: 100px;
 }
 
-.tank {
+.tank1 {
+    display: inline-block;
+    background-color: red;
+    width: 80px;
+    height: 40px;
+    position: relative;
+}
+
+.tank2{
+    display: inline-block;
+    background-color: white;
+    width: 80px;
+    height: 40px;
+    position: relative;
+}
+
+.tank3{
     display: inline-block;
     background-color: black;
     width: 80px;
