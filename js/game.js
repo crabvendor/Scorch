@@ -8,21 +8,28 @@ import {Tank} from "./tank/Tank.js";
 import {Battlefield} from "./battlefield/Battlefield.js";
 import {BattlefieldController} from "./battlefield/BattlefieldController.js";
 import {BattlefieldView} from "./battlefield/BattlefieldView.js";
+import { TankParams } from "./Constants.js";
 
 let battlefieldView;
 
 
 
 const prepareBattlefield = new Promise((resolve, reject) => {
+    let ground = new Ground("(-0.5)*x+500");
+    let groundCords = ground.getCordsArray();
     let tankViewList = new Array();
-    tankViewList.push(createTank(300, 0, "bob"))
-    tankViewList.push(createTank(180, 0, "Franek"))
+    tankViewList.push(createTank(300, groundCords, "bob"))
+    tankViewList.push(createTank(180, groundCords, "Franek"))
+    
+    
 
     battlefieldView = createBattlefield(tankViewList);
+
+   
+    
     document.body.appendChild(battlefieldView.battlefieldElement);
     
-    let ground = new Ground("1*x");
-    let groundCords = ground.getCordsArray();
+    
 
     for (let i = 0; i <= groundCords.length -1; i++){
         let xPos = groundCords[i][0];
@@ -30,6 +37,8 @@ const prepareBattlefield = new Promise((resolve, reject) => {
         let groundElementPosition = new Position(xPos,yPos)
         document.getElementById("battlefield").appendChild(battlefieldView.getGroundElement(groundElementPosition));
     }
+
+    
 
     if (battlefieldView){
     resolve((printBfield(tankViewList, battlefieldView))
@@ -53,8 +62,9 @@ function printBfield(tankViewList, battlefieldView){
     document.getElementById("battlefield-interface").appendChild(battlefieldView.battlefieldInterfaceElement)
 }
 
-function createTank(xPos, Ypos, name){
-    let tankPosition = new Position(xPos, Ypos);
+function createTank(xPos, groundCords, name){
+    let yPos = groundCords[xPos][1] - 1.5 * TankParams.HEIGHT;
+    let tankPosition = new Position(xPos, yPos);
     let tank = new Tank(name, tankPosition);
     let tankController = new TankController(tank);
     return new TankView(tankController)
