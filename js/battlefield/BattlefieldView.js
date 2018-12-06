@@ -1,8 +1,12 @@
+
+
 export class BattlefieldView {
     constructor(battlefieldController) {
         this.battlefieldController = battlefieldController;
+        
         this.updateInterfaceElements();
         this.addEventListeners();
+        
     }
 
     renderBattlefield() {
@@ -13,6 +17,15 @@ export class BattlefieldView {
         </div>
         `
     }
+
+    renderGround(singlePosition){
+        let positionLeft = singlePosition.getX();
+        let positionTop = singlePosition.getY();
+        return `
+        <div class="mountain" style="left: ${positionLeft}px; top: ${positionTop}px"></div>
+        `
+    }
+
 
     renderInterface() {
         let currentTank = this.battlefieldController.getCurrentTank();
@@ -30,6 +43,12 @@ export class BattlefieldView {
             </div>
         </div>
         `
+    }
+
+    getGroundElement(position){
+        let element =document.createElement("template");
+        element.innerHTML = this.renderGround(position).trim();
+        return element.content.firstChild;
     }
 
     getBattlefieldElement() {
