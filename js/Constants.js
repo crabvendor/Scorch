@@ -42,4 +42,4 @@ export const GroundConstants = {
     TO_POWER_ONE:1,
     SECOND_ARRAY:1,
     SECOND_CHAR:1,
-}
+};
