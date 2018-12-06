@@ -5,8 +5,8 @@ export class BattlefieldController {
     
     constructor(battlefield, groundCords) {
         this.battlefield = battlefield;
-        this.currentTankId = 1;
-        this.currentTank = this.battlefield.getTanks()[this.currentTankId - 1].getController();
+        this.currentTankId = 0;
+        this.currentTank = this.battlefield.getTanks()[this.currentTankId].getController();
         this.bulletView;
         this.tankViewList = this.battlefield.getTanks();
         this.buttonNotPressed = true;
@@ -70,11 +70,14 @@ export class BattlefieldController {
                     tankElem.parentNode.removeChild(tankElem);
                     let bulletElem = document.getElementsByClassName("bullet")[0];
                     bulletElem.parentNode.removeChild(bulletElem);
-                    delete this.bulletView;
                     this.tankViewList.splice(i, 1)         
                     break;    
                 }
             }
+
+            console.log(this.groundCords[currentPos.getX()]);
+            
+            
             
             
             await this.sleep(20);

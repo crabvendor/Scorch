@@ -26,16 +26,16 @@ body {
 
 .bullet {
     position: absolute;
-    background-color: blueviolet;
-    width: 10px;
-    height: 10px;
+    background-color: black;
+    width: 5px;
+    height: 5px;
 }
 
 .mountain{
     position: absolute;
     display: block;
-    width: 2px;
-    height: 2px;
+    width: 1px;
+    height: 1px;
     background-color: blue;
 }
 
