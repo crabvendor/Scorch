@@ -5,28 +5,28 @@ export class BattlefieldController {
     
     constructor(battlefield) {
         this.battlefield = battlefield;
-        this.currentTankId = 0;
-        this.currentTank = this.battlefield.getTanks()[this.currentTankId].getController();
+        this.currentTankId = 1;
+        this.currentTank = this.battlefield.getTanks()[this.currentTankId - 1].getController();
         this.bulletView;
         this.tankViewList = this.battlefield.getTanks();
+        this.buttonNotPressed = true;
     }
 
     getCurrentTank() {
         return this.currentTank;
     }
 
-    nextTurn(e) {
-        if (e.keyCode == KeyCodes.ENTER) {
-            this.currentTankId++;
-            if (this.currentTankId >= this.battlefield.getTanks().length) {
-                this.currentTankId = 0;
-            }
-            this.currentTank = this.battlefield.getTanks()[this.currentTankId].getController();
+    nextTurn() {
+        this.currentTankId++;
+        if (this.currentTankId >= this.battlefield.getTanks().length) {
+            this.currentTankId = 0;
         }
+        this.currentTank = this.battlefield.getTanks()[this.currentTankId].getController();
     }
 
     shoot(e) {
-        if(e.keyCode == KeyCodes.ENTER) {
+        if(e.keyCode == KeyCodes.ENTER && this.buttonNotPressed ) {
+            this.buttonNotPressed = false;
             const getBullet = new Promise((resolve, reject) => {
                 this.bulletView = this.currentTank.createBullet();
                 if (this.bulletView){
@@ -38,6 +38,10 @@ export class BattlefieldController {
             });
             getBullet.then(
                 result => this.currentTank.getTank().setPos(new Position(this.currentTank.getTank().getxStart(), this.currentTank.getTank().getyStart()))
+            ).then(
+                result => this.nextTurn()
+            ).then(
+                result => this.buttonNotPressed = !result
             );
         }
 
@@ -52,8 +56,7 @@ export class BattlefieldController {
             hitSomething.then(
                 result => hitSomething = result
             );
-            //console.log(currentPos.getX())
-            //console.log(currentPos.getY())
+
             for (let i = 0; i<= this.tankViewList.length - 1; i++){
                 let tank = this.tankViewList[i].getController().getTank();
                 let tankElem = document.getElementById(tank.getName());
@@ -61,9 +64,12 @@ export class BattlefieldController {
                 hitTank = this.isCollide(currentPos, tankPos);
 
                 if (hitTank){
-                    console.log(currentPos.getX() + " " + currentPos.getY());
-                    console.log(tankPos.getX() + " " + tankPos.getY());  
-                    console.log(tank.getName())    
+                    hitSomething = hitTank;
+                    tankElem.parentNode.removeChild(tankElem);
+                    let bulletElem = document.getElementsByClassName("bullet")[0];
+                    bulletElem.style.display = "none";
+                    this.tankViewList.splice(i, 1)         
+                    break;    
                 }
             }
             
