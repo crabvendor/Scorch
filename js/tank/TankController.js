@@ -21,6 +21,15 @@ export class TankController {
         } else if (keyCode == KeyCodes.LEFT){
             this.shotParams.decrementPower()
         }
+        if(this.shotParams.getAngle()<0){
+            this.shotParams.setAngle(10);
+        }
+        if(this.shotParams.getPower()<0){
+            this.shotParams.setPower(10);
+        }
+        if(this.shotParams.getAngle()>180){
+            this.shotParams.setAngle(180);
+        }
     } 
 
     createBullet(e) {
