@@ -1,16 +1,16 @@
 body {
     display: flex;
     justify-content: center;
-    background-color: grey;
-    width: 100%;
-    height: 800px;
+    background-image: url("apocalypse-2273069_1280.jpg");
+    width: 1000px;
+    height: 500px;
+    margin: 0px;
+    background-repeat: no-repeat;
 }
 
 #battlefield {
     background-color: white;
     align-self: center;
-    margin-top: 100px;
-
     width: 1000px;
     height: 500px;
 }
@@ -18,23 +18,32 @@ body {
 .tank {
     display: inline-block;
     background-color:black;
-    position: relative;
+    position: absolute;
 
-    width: 80px;
-    height: 40px;
+    width: 20px;
+    height: 10px;
 }
 
 .bullet {
-    position: relative;
-    background-color: blueviolet;
-    
-    width: 10px;
-    height: 10px;
+    position: absolute;
+    background-color: black;
+    width: 5px;
+    height: 5px;
+}
+
+.mountain{
+    position: absolute;
+    display: block;
+    width: 1px;
+    height: 1px;
+    background-color: blue;
 }
 
 #top-bar {
     display: flex;
     justify-content: center;
+    background-color: black;
+    color: aliceblue;
 }
 
 .shot-parameters {

@@ -9,11 +9,21 @@ export const KeyCodes = {
   };
 
 export const TankParams = {
-    HEIGHT: 40,
-    WITDH: 80,
+    HEIGHT: 10,
+    WITDH: 20,
 };
 
 export const BattlefieldParams = {
-    HEIGHT: 1000,
-    WITDH: 500,
-}
+    WITDH: 1000,
+    HEIGHT: 500,
+};
+
+export const BulletParams = {
+    WITDH: 5,
+    HEIGHT: 5,
+};
+
+export const GroundElement = {
+    WITDH:1,
+    HEIGHT:1,
+};
