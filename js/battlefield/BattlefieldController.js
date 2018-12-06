@@ -1,4 +1,4 @@
-import {KeyCodes, BulletParams, TankParams} from "../Constants.js";
+import {KeyCodes, BulletParams, TankParams, BattlefieldParams} from "../Constants.js";
 import { Position } from "../position/Position.js";
 
 export class BattlefieldController {
@@ -52,21 +52,22 @@ export class BattlefieldController {
     async moveAndTrackBullet(){
         let hitSomething = this.bulletView.getController().moveBullet();
         let hitTank = false;
+        let hitGround = false;
         do{ 
             
             let currentPos = this.bulletView.getController().getBullet().getPos();
+            
             hitSomething.then(
                 result => hitSomething = result
             );
-
             for (let i = 0; i<= this.tankViewList.length - 1; i++){
                 let tank = this.tankViewList[i].getController().getTank();
                 let tankElem = document.getElementById(tank.getName());
                 let tankPos = tank.getPos();
-                hitTank = this.isCollide(currentPos, tankPos);
+                hitTank = this.isCollideTank(currentPos, tankPos);
 
                 if (hitTank){
-                    hitSomething = hitTank;
+                    hitSomething = !hitTank;
                     tankElem.parentNode.removeChild(tankElem);
                     let bulletElem = document.getElementsByClassName("bullet")[0];
                     bulletElem.parentNode.removeChild(bulletElem);
@@ -74,24 +75,40 @@ export class BattlefieldController {
                     break;    
                 }
             }
-
-            console.log(this.groundCords[currentPos.getX()]);
             
+            let currentX = parseInt(currentPos.getX());
+            let xCord = this.groundCords[currentX][0];
+            let yCord = this.groundCords[currentX][1];
+            let mapPos = new Position(xCord, yCord);
+            hitGround = this.isCollideGround(currentPos, mapPos)
             
-            
-            
-            await this.sleep(20);
+            if(hitGround){
+                hitSomething = !hitGround;
+                let bulletElem = document.getElementsByClassName("bullet")[0];
+                bulletElem.parentNode.removeChild(bulletElem);
+            }
+          await this.sleep(20);
         }while(hitSomething)
+        console.log("wyszło");
         
         
     }
 
-    isCollide(bulletPos, tankPos) {
+    isCollideTank(bulletPos, tankPos) {
         return !(
             ((bulletPos.getY() + BulletParams.HEIGHT) < (tankPos.getY())) ||
             (bulletPos.getY() > (tankPos.getY() + TankParams.HEIGHT)) ||
             ((bulletPos.getX() + BulletParams.WITDH) < tankPos.getX()) ||
             (bulletPos.getX() > (tankPos.getX() + TankParams.WITDH))
+        );
+    }
+
+    isCollideGround(bulletPos, mapPos) {
+        return !(
+            ((bulletPos.getY() + BulletParams.HEIGHT) < (mapPos.getY())) ||
+            (bulletPos.getY() > (mapPos.getY() + BattlefieldParams.HEIGHT)) ||
+            ((bulletPos.getX() + BulletParams.WITDH) < mapPos.getX()) ||
+            (bulletPos.getX() > (mapPos.getX() + BattlefieldParams.WITDH))
         );
     }
 
