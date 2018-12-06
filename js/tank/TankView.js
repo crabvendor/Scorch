@@ -10,7 +10,10 @@ export class TankView {
         let positionTop = this.tankController.tank.getPos().getY();
         
         return `
-        <div class="tank" id="${name}" style="left: ${positionLeft}px; top: ${positionTop}px"></div>
+        <div class="tank" id="${name}" style="left: ${positionLeft}px; top: ${positionTop}px">
+            <div class="nametag">${name}</div>
+            <div class="cannon"></div>
+        </div>
         `
     }
 

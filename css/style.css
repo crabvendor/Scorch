@@ -1,3 +1,8 @@
+html {
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
+
 body {
     /* display: flex;
     justify-content: center; */
@@ -29,6 +34,24 @@ body {
 
     width: 20px;
     height: 10px;
+}
+
+.cannon {
+    position: relative;
+    width: 20px;
+    height: 4px;
+    top: -10px;
+    background-color: rgb(34, 134, 173);
+    transform: rotate(-45deg);
+}
+
+.nametag{
+    width: 20px;
+    height: 10px;   
+    position: relative;
+    top: -25px;
+    text-align: center;
+    color: rgb(34, 134, 173);
 }
 
 .bullet {
@@ -64,7 +87,6 @@ body {
 
 .shot-parameters h3 {
     margin-left: 10px;
-    font-family: 
 }
 
 .tank-name {
