@@ -1,5 +1,3 @@
-import {BulletController} from "./BulletController.js";
-
 export class BulletView{
 
     constructor(bulletController){
@@ -18,5 +16,9 @@ export class BulletView{
         let elem = document.createElement('template');
         elem.innerHTML = this.render().trim();
         return elem.content.firstChild;
+    }
+
+    getController(){
+        return this.controller;
     }
 }
