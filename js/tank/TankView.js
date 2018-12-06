@@ -2,7 +2,6 @@ export class TankView {
     constructor(tankController) {
         this.tankController = tankController;
         this.tankElement = this.createTankElement();
-        this.registerEventListeners();
     }
 
     render() {
@@ -19,10 +18,6 @@ export class TankView {
         let elem = document.createElement('template');
         elem.innerHTML = this.render().trim();
         return elem.content.firstChild;
-    }
-
-    registerEventListeners() {
-        document.addEventListener("keydown", this.tankController.changeShotParams.bind(this.tankController));
     }
 
     getController(){

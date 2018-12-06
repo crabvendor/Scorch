@@ -33,7 +33,7 @@ export class BulletController{
         let ySpeed = Math.sin(angleRad) * power;
         let xSpeed = Math.cos(angleRad) * power;
         let xStart = startPoint.getX();
-        let yStart = startPoint.getY() - 60;
+        let yStart = startPoint.getY() - 6;
         let stopTime = ySpeed/gravityAcceleration;
         let flyTime = stopTime + Math.sqrt((ySpeed * stopTime - gravityAcceleration/2 * Math.pow(stopTime, 2) +yStart) * 2/gravityAcceleration);
         let trajTable = new Array();
