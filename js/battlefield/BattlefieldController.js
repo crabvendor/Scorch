@@ -67,7 +67,8 @@ export class BattlefieldController {
                     hitSomething = hitTank;
                     tankElem.parentNode.removeChild(tankElem);
                     let bulletElem = document.getElementsByClassName("bullet")[0];
-                    bulletElem.style.display = "none";
+                    bulletElem.parentNode.removeChild(bulletElem);
+                    delete this.bulletView;
                     this.tankViewList.splice(i, 1)         
                     break;    
                 }
