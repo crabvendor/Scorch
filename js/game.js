@@ -20,6 +20,7 @@ const prepareBattlefield = new Promise((resolve, reject) => {
     let tankViewList = new Array();
     tankViewList.push(createTank(300, groundCords, "bob"))
     tankViewList.push(createTank(180, groundCords, "Franek"))
+    tankViewList.push(createTank(500, groundCords, "Benek"))
     
     battlefieldView = createBattlefield(tankViewList, groundCords);
     document.body.appendChild(battlefieldView.battlefieldElement);
