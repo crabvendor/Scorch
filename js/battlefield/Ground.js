@@ -41,7 +41,6 @@ export class Ground{
 
                 }
                 this.cordsArray.push([i,y]);
-                console.log(i + " " + y);
                 i++;
             }
             
