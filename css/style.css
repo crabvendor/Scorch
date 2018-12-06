@@ -1,19 +1,19 @@
 body {
     /* display: flex;
     justify-content: center; */
-    background-image: url("apocalypse-2273069_1280.jpg");
-    background-position: center;
-    background-size: cover;
     width: 1000px;
     height: 900px;
     margin: 0px;
     background-repeat: no-repeat;
 }
-/* 
+
 #battlefield {
+    background-image: url("apocalypse-2273069_1280.jpg");
+    background-position: center;
+    background-size: cover;
     width: 100%;
-    height: 90%;
-} */
+    height: 100%;
+}
 
 #battlefield-interface {
     background-color: white;
@@ -22,9 +22,25 @@ body {
     height: 500px;
 }
 
-.tank {
+.tank1 {
     display: inline-block;
-    background-color:black;
+    background-color: red;
+    width: 80px;
+    height: 40px;
+    position: relative;
+}
+
+.tank2{
+    display: inline-block;
+    background-color: white;
+    width: 80px;
+    height: 40px;
+    position: relative;
+}
+
+.tank3{
+    display: inline-block;
+    background-color:rgb(34, 134, 173);
     position: absolute;
 
     width: 20px;
@@ -43,20 +59,28 @@ body {
     display: block;
     width: 1px;
     height: 1px;
-    background-color: rgb(48, 48, 53);
+    background-color: rgb(77, 11, 3);
 }
 
 #top-bar {
+    position: absolute;
     display: flex;
     justify-content: center;
     background-color: black;
     color: aliceblue;
+    top:500px;
+    width: 1000px;
 }
 
 .shot-parameters {
     display: flex;
     justify-content: center;
     align-content: space-around;
+}
+
+.shot-parameters h3 {
+    margin-left: 10px;
+    font-family: 
 }
 
 .tank-name {

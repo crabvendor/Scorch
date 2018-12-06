@@ -34,7 +34,7 @@ body {
     margin-bottom: 20px;
 }
 
-.login-form input[type="text"], input[type="password"], input[type="submit"] {
+.login-form input[type="text"], input[type="password"], input[type="submit"], input[type="number"] {
     height: 30px;
     width: 100%;
     font-size: 16px;

@@ -7,10 +7,12 @@ export class TankView {
     render() {
         let name = this.tankController.tank.getName();
         let positionLeft = this.tankController.tank.getPos().getX();
-        let positionTop = this.tankController.tank.getPos().getY();
-        
+
+        let color = document.getElementById("color");;
         return `
-        <div class="tank" id="${name}" style="left: ${positionLeft}px; top: ${positionTop}px"></div>
+        <div class=${color} id="${name}" style="left: ${positionLeft}px; top: calc(100% - 40px)"></div>
+
+        let positionTop = this.tankController.tank.getPos().getY();
         `
     }
 
