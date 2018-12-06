@@ -19,7 +19,9 @@ export class Ground{
                     let param;
                     
                     if(expression[0].includes("(")){
-                        let value = expression[0].split("")[2];
+                        
+                        let value = expression[0].substring(2, expression[0].length -1);
+
                         param = -parseFloat(value);
 
                     } else{
