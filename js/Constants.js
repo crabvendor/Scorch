@@ -9,8 +9,8 @@ export const KeyCodes = {
   };
 
 export const TankParams = {
-    HEIGHT: 40,
-    WITDH: 80,
+    HEIGHT: 10,
+    WITDH: 20,
 };
 
 export const BattlefieldParams = {
