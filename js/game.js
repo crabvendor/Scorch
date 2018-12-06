@@ -11,19 +11,19 @@ import {BattlefieldView} from "./battlefield/BattlefieldView.js";
 import { TankParams } from "./Constants.js";
 
 let battlefieldView;
-
+let groundCords;
 
 
 const prepareBattlefield = new Promise((resolve, reject) => {
     let ground = new Ground("(-1)*x+500");
-    let groundCords = ground.getCordsArray();
+    groundCords = ground.getCordsArray();
     let tankViewList = new Array();
     tankViewList.push(createTank(300, groundCords, "bob"))
     tankViewList.push(createTank(180, groundCords, "Franek"))
     
     
 
-    battlefieldView = createBattlefield(tankViewList);
+    battlefieldView = createBattlefield(tankViewList, groundCords);
 
    
     
@@ -79,9 +79,9 @@ function createTank(xPos, groundCords, name){
     
 }
 
-function createBattlefield(tankViewList){
+function createBattlefield(tankViewList, groundCords){
     let newBattlefield = new Battlefield(tankViewList);
-    let battlefieldController = new BattlefieldController(newBattlefield);
+    let battlefieldController = new BattlefieldController(newBattlefield, groundCords);
     let battlefieldView = new BattlefieldView(battlefieldController);
     return battlefieldView;
 }
