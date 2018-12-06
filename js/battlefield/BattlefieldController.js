@@ -89,7 +89,6 @@ export class BattlefieldController {
             }
           await this.sleep(20);
         }while(hitSomething)
-        console.log("wyszło");
         
         
     }

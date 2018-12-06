@@ -8,6 +8,7 @@ export class TankController {
     constructor(tank) {
         this.tank = tank;
         this.shotParams = new ShotParameter(45,50);
+        this.addEventListener();
     }
 
     changeShotParams(e){
@@ -47,6 +48,10 @@ export class TankController {
 
     getTank(){
         return this.tank;
+    }
+
+    addEventListener(){
+        document.addEventListener("keydown", this.changeShotParams.bind(this));
     }
 }
     

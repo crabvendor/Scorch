@@ -72,7 +72,6 @@ export class BattlefieldView {
     addEventListeners() {
         document.addEventListener("keydown", this.updateInterfaceElements.bind(this));
         document.addEventListener("keypress", this.battlefieldController.shoot.bind(this.battlefieldController));
-        document.addEventListener("keydown", this.battlefieldController.getCurrentTank().changeShotParams.bind(this.battlefieldController.getCurrentTank()));
 
     }
 
