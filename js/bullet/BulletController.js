@@ -29,8 +29,8 @@ export class BulletController{
         let ySpeed = Math.sin(angleRad) * power;
         let xSpeed = Math.cos(angleRad) * power;
         let xStart = startPoint.getX();
-        let yStart = startPoint.getY() -10;
-        
+        let yStart = startPoint.getY() - 6;
+
         let stopTime = ySpeed/gravityAcceleration;
         let flightHeight = ySpeed * stopTime - gravityAcceleration/2 *Math.pow(stopTime,2);
         let finalFallDistance = BattlefieldParams.HEIGHT - yStart + flightHeight;

@@ -15,30 +15,21 @@ let groundCords;
 
 
 const prepareBattlefield = new Promise((resolve, reject) => {
-    let ground = new Ground("(-1)*x+500");
+    let ground = new Ground("(-0.001)*x^2+500");
     groundCords = ground.getCordsArray();
     let tankViewList = new Array();
     tankViewList.push(createTank(300, groundCords, "bob"))
     tankViewList.push(createTank(180, groundCords, "Franek"))
     
-    
-
     battlefieldView = createBattlefield(tankViewList, groundCords);
-
-   
-    
     document.body.appendChild(battlefieldView.battlefieldElement);
     
-    
-
     for (let i = 0; i <= groundCords.length -1; i++){
         let xPos = groundCords[i][0];
         let yPos = groundCords[i][1];
         let groundElementPosition = new Position(xPos,yPos)
         document.getElementById("battlefield").appendChild(battlefieldView.getGroundElement(groundElementPosition));
     }
-
-    
 
     if (battlefieldView){
     resolve((printBfield(tankViewList, battlefieldView))
