@@ -24,11 +24,11 @@ export class TankController {
     } 
 
     createBullet(e) {
-        
+
         let bullet = new Bullet(this.tank, this.shotParams);
         let bulletController = new BulletController(bullet);
         let bulletView = new BulletView(bulletController);
-        document.getElementById(`${this.tank.getName()}`).appendChild(bulletView.element);
+        document.getElementById(`battlefield`).appendChild(bulletView.element);
         return bulletView;
     }
 

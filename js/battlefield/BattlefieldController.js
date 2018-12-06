@@ -52,7 +52,8 @@ export class BattlefieldController {
             hitSomething.then(
                 result => hitSomething = result
             );
-            console.log(currentPos.getY())
+            //console.log(currentPos.getX())
+            //console.log(currentPos.getY())
             for (let i = 0; i<= this.tankViewList.length - 1; i++){
                 let tank = this.tankViewList[i].getController().getTank();
                 let tankElem = document.getElementById(tank.getName());

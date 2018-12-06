@@ -12,11 +12,11 @@ export class BulletController{
         let power = this.bullet.getPower();
         let trajectory = this.calulateTrajectory(power, angle, this.bullet.getPos());
         
-        for (let i = 0; i <= trajectory.length - 1; i++ ){
+        for (let i = 0; i <= trajectory.length -1; i++ ){
             let xPos = trajectory[i][0];
             let yPos = trajectory[i][1];
             bulletElem.style.left = xPos + "px";
-            bulletElem.style.top = -yPos + "px";
+            bulletElem.style.top = yPos + "px";
             this.bullet.setPos(new Position(xPos, yPos))
             if (i == trajectory.length - 1 ) {
                 bulletElem.parentElement.removeChild(bulletElem);
@@ -33,16 +33,16 @@ export class BulletController{
         let ySpeed = Math.sin(angleRad) * power;
         let xSpeed = Math.cos(angleRad) * power;
         let xStart = startPoint.getX();
-        let yStart = startPoint.getY() + 50;
-        let offset = yStart + TankParams.HEIGHT;
+        let yStart = startPoint.getY() - 20;
+        
         let stopTime = ySpeed/gravityAcceleration;
-        let flyTime = stopTime + Math.sqrt((ySpeed * stopTime - gravityAcceleration/2 * Math.pow(stopTime, 2) +offset) * 2/gravityAcceleration);
+        let flyTime = stopTime + Math.sqrt((ySpeed * stopTime - gravityAcceleration/2 * Math.pow(stopTime, 2) +yStart) * 2/gravityAcceleration);
         let trajTable = new Array();
         
         for (let i = 0; i<flyTime; i += 0.1){
-            let yValue = yStart + ySpeed * i - gravityAcceleration/2 * Math.pow(i, 2);
+            let yValue = yStart - ySpeed * i + gravityAcceleration/2 * Math.pow(i, 2);
             let xValue = xSpeed * i + xStart;
-            trajTable.push([xValue, yValue]);
+            trajTable.push([xValue, yValue]);  
         }
         
         return trajTable;

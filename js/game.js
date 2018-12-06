@@ -13,8 +13,8 @@ let battlefieldView;
 
 const addTanks = new Promise((resolve, reject) => {
     let tankViewList = new Array();
-    tankViewList.push(createTank(0, 0, "bob"))
-    tankViewList.push(createTank(180, 0, "Franek"))
+    tankViewList.push(createTank(0, 460, "bob"))
+    tankViewList.push(createTank(180, 460, "Franek"))
 
     battlefieldView = createBattlefield(tankViewList);
     document.body.appendChild(battlefieldView.battlefieldElement);
