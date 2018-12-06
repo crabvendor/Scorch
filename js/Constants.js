@@ -33,4 +33,13 @@ export const BulletControllerConsts = {
     MOVE_SPEED_DELAY_MILISECS: 50,
     TRAJECTORY_X_INDEX: 0,
     TRAJECTORY_Y_INDEX: 1,
+};
+
+export const GroundConstants = {
+    PARAM_INDEX: 0,
+    X_INDEX: 1,
+    SINGLE_CHAR:1,
+    TO_POWER_ONE:1,
+    SECOND_ARRAY:1,
+    SECOND_CHAR:1,
 }
