@@ -43,3 +43,9 @@ export const GroundConstants = {
     SECOND_ARRAY:1,
     SECOND_CHAR:1,
 };
+
+export const BattlefieldControllerConstants ={
+    TRAJECTORY_X_INDEX: 0,
+    TRAJECTORY_Y_INDEX: 1,
+    MOVE_SPEED_DELAY_MILISECS: 20,
+}

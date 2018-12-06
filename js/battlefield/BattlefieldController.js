@@ -1,4 +1,4 @@
-import {KeyCodes, BulletParams, TankParams, BattlefieldParams} from "../Constants.js";
+import {KeyCodes, BulletParams, TankParams, BattlefieldParams, BattlefieldControllerConstants} from "../Constants.js";
 import { Position } from "../position/Position.js";
 
 export class BattlefieldController {
@@ -77,8 +77,8 @@ export class BattlefieldController {
             }
             
             let currentX = parseInt(currentPos.getX());
-            let xCord = this.groundCords[currentX][0];
-            let yCord = this.groundCords[currentX][1];
+            let xCord = this.groundCords[currentX][BattlefieldControllerConstants.TRAJECTORY_X_INDEX];
+            let yCord = this.groundCords[currentX][BattlefieldControllerConstants.TRAJECTORY_Y_INDEX];
             let mapPos = new Position(xCord, yCord);
             hitGround = this.isCollideGround(currentPos, mapPos)
             
@@ -87,11 +87,8 @@ export class BattlefieldController {
                 let bulletElem = document.getElementsByClassName("bullet")[0];
                 bulletElem.parentNode.removeChild(bulletElem);
             }
-          await this.sleep(20);
-        }while(hitSomething)
-        console.log("wyszło");
-        
-        
+          await this.sleep(BattlefieldControllerConstants.MOVE_SPEED_DELAY_MILISECS);
+        }while(hitSomething)     
     }
 
     isCollideTank(bulletPos, tankPos) {
