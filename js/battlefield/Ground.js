@@ -1,4 +1,4 @@
-import { BattlefieldParams } from "../Constants.js";
+import { BattlefieldParams, GroundConstants } from "../Constants.js";
 
 export class Ground{
     constructor(equation){
@@ -18,24 +18,24 @@ export class Ground{
                     let expression = splittedEquation[k].split("*");
                     let param;
                     
-                    if(expression[0].includes("(")){
+                    if(expression[GroundConstants.PARAM_INDEX].includes("(")){
                         
-                        let value = expression[0].substring(2, expression[0].length -1);
+                        let value = expression[GroundConstants.PARAM_INDEX].substring(2, expression[GroundConstants.PARAM_INDEX].length -1);
 
                         param = -parseFloat(value);
 
                     } else{
-                        param = parseFloat(expression[0]);
+                        param = parseFloat(expression[GroundConstants.PARAM_INDEX]);
                     }
 
-                    if (expression[1] == "x"){
-                        y += this.calculatePosition(param, 1, i)
+                    if (expression[GroundConstants.X_INDEX] == "x"){
+                        y += this.calculatePosition(param, GroundConstants.TO_POWER_ONE, i)
                         
-                    } else if(expression.length == 1){
+                    } else if(expression.length == GroundConstants.SINGLE_CHAR){
                         y += param;
-                    } else if (expression[1].includes("^")){
-                        let xExpr = expression[1].split("^");
-                        let power = xExpr[1];
+                    } else if (expression[GroundConstants.SECOND_ARRAY].includes("^")){
+                        let xExpr = SECOND_ARRAY.split("^");
+                        let power = xExpr[GroundConstants.SECOND_CHAR];
                         y += this.calculatePosition(param, power, i)
                     }
 

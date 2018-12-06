@@ -1,3 +1,4 @@
+import { BattlefieldParams } from "../Constants";
 
 
 export class BattlefieldView {
@@ -22,7 +23,7 @@ export class BattlefieldView {
         let positionLeft = singlePosition.getX();
         let positionTop = singlePosition.getY();
         return `
-        <div class="mountain" style="left: ${positionLeft}px; top: ${positionTop}px; height:${500 - positionTop}px"></div>
+        <div class="mountain" style="left: ${positionLeft}px; top: ${positionTop}px; height:${BattlefieldParams.HEIGHT - positionTop}px"></div>
         `
     }
 

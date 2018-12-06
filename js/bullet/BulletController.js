@@ -1,4 +1,4 @@
-import {gravityAcceleration, TankParams, BattlefieldParams} from "../Constants.js"
+import {gravityAcceleration, TankParams, BattlefieldParams, BulletControllerConsts} from "../Constants.js"
 import { Position } from "../position/Position.js";
 
 export class BulletController{
@@ -13,12 +13,12 @@ export class BulletController{
         let trajectory = this.calulateTrajectory(power, angle, this.bullet.getPos());
         
         for (let i = 0; i <= trajectory.length -1; i++ ){
-            let xPos = trajectory[i][0];
-            let yPos = trajectory[i][1];
+            let xPos = trajectory[i][BulletControllerConsts.TRAJECTORY_X_INDEX];
+            let yPos = trajectory[i][BulletControllerConsts.TRAJECTORY_Y_INDEX];
             bulletElem.style.left = xPos + "px";
             bulletElem.style.top = yPos + "px";
             this.bullet.setPos(new Position(xPos, yPos))
-            await this.sleep(50); 
+            await this.sleep(BulletControllerConsts.MOVE_SPEED_DELAY_MILISECS); 
         }
         return false;
         }
@@ -29,8 +29,8 @@ export class BulletController{
         let ySpeed = Math.sin(angleRad) * power;
         let xSpeed = Math.cos(angleRad) * power;
         let xStart = startPoint.getX();
-        let yStart = startPoint.getY() - 6;
-
+        let yStart = startPoint.getY() - TankParams.HEIGHT;
+        
         let stopTime = ySpeed/gravityAcceleration;
         let flightHeight = ySpeed * stopTime - gravityAcceleration/2 *Math.pow(stopTime,2);
         let finalFallDistance = BattlefieldParams.HEIGHT - yStart + flightHeight;
@@ -38,7 +38,7 @@ export class BulletController{
         let flyTime = stopTime + Math.sqrt(2*(finalFallDistance)/gravityAcceleration);
         let trajTable = new Array();
         
-        for (let i = 0; i<flyTime; i += 0.15){
+        for (let i = 0; i<flyTime; i += BulletControllerConsts.ANIMATION_SPEED_RATE){
             let yValue = yStart - ySpeed * i + gravityAcceleration/2 * Math.pow(i, 2);
             let xValue = xSpeed * i + xStart;
             trajTable.push([xValue, yValue]); 
