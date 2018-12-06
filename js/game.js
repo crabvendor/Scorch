@@ -24,7 +24,7 @@ const prepareBattlefield = new Promise((resolve, reject) => {
     let ground = new Ground("1*x");
     let groundCords = ground.getCordsArray();
 
-    for (let i = groundCords.length -1 ; i >= 0; i--){
+    for (let i = 0; i <= groundCords.length -1; i++){
         let xPos = groundCords[i][0];
         let yPos = groundCords[i][1];
         let groundElementPosition = new Position(xPos,yPos)
