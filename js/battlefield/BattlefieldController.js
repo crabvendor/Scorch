@@ -1,4 +1,4 @@
-import {KeyCodes, BulletParams, TankParams, GroundElement} from "../Constants.js";
+import {KeyCodes, BulletParams, TankParams} from "../Constants.js";
 import { Position } from "../position/Position.js";
 
 export class BattlefieldController {
@@ -11,6 +11,7 @@ export class BattlefieldController {
         this.tankViewList = this.battlefield.getTanks();
         this.buttonNotPressed = true;
         this.groundCords = groundCords;
+
     }
 
     getCurrentTank() {
@@ -51,50 +52,43 @@ export class BattlefieldController {
     async moveAndTrackBullet(){
         let hitSomething = this.bulletView.getController().moveBullet();
         let hitTank = false;
-        let hitGround = false;
-        
         do{ 
             
             let currentPos = this.bulletView.getController().getBullet().getPos();
             hitSomething.then(
                 result => hitSomething = result
             );
-            
+
             for (let i = 0; i<= this.tankViewList.length - 1; i++){
-                let bulletElem = document.getElementsByClassName("bullet")[0];
                 let tank = this.tankViewList[i].getController().getTank();
                 let tankElem = document.getElementById(tank.getName());
                 let tankPos = tank.getPos();
-                let xPos = currentPos.getX();
-                let mapPos = new Position(this.groundCords[xPos][0], this.groundCords[xPos][1]);
-                console.log(mapPos);
-                
-                hitTank = this.isCollide(currentPos, tankPos, TankParams);
-                hitGround = this.isCollide(currentPos, mapPos, GroundElement);
-                
+                hitTank = this.isCollide(currentPos, tankPos);
+
                 if (hitTank){
                     hitSomething = hitTank;
                     tankElem.parentNode.removeChild(tankElem);
+                    let bulletElem = document.getElementsByClassName("bullet")[0];
                     bulletElem.parentNode.removeChild(bulletElem);
                     delete this.bulletView;
                     this.tankViewList.splice(i, 1)         
-                    break;
+                    break;    
                 }
             }
             
             
             await this.sleep(20);
-        }while(!hitSomething)
+        }while(hitSomething)
         
         
     }
 
-    isCollide(bulletPos, obj, ObjectParams) {
+    isCollide(bulletPos, tankPos) {
         return !(
-            ((bulletPos.getY() + BulletParams.HEIGHT) < (obj.getY())) ||
-            (bulletPos.getY() > (obj.getY() + ObjectParams.HEIGHT)) ||
-            ((bulletPos.getX() + BulletParams.WITDH) < obj.getX()) ||
-            (bulletPos.getX() > (obj.getX() + ObjectParams.WITDH))
+            ((bulletPos.getY() + BulletParams.HEIGHT) < (tankPos.getY())) ||
+            (bulletPos.getY() > (tankPos.getY() + TankParams.HEIGHT)) ||
+            ((bulletPos.getX() + BulletParams.WITDH) < tankPos.getX()) ||
+            (bulletPos.getX() > (tankPos.getX() + TankParams.WITDH))
         );
     }
 
